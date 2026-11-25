@@ -1,0 +1,306 @@
+{
+  "packages": [
+    {
+      "id": "com.archnet.designpattern.facade",
+      "name": "Facade Pattern",
+      "category": "Design Pattern",
+      "version": "2.0.0",
+      "description": "Learning package: a sample showing the Facade pattern, one simple entry point to several systems.",
+      "repo": "DesignPatternFacade",
+      "dependencies": []
+    },
+    {
+      "id": "com.archnet.designpattern.factory",
+      "name": "Factory Pattern",
+      "category": "Design Pattern",
+      "version": "2.0.0",
+      "description": "Creates objects from a key without the calling code knowing their concrete type: Factory<TKey, TProduct>.",
+      "repo": "DesignPatternFactory",
+      "dependencies": []
+    },
+    {
+      "id": "com.archnet.designpattern.objectpooling",
+      "name": "Object Pooling Pattern",
+      "category": "Design Pattern",
+      "version": "2.0.0",
+      "description": "Reuses copies of a prefab instead of creating and destroying them, built on Unity's ObjectPool.",
+      "repo": "DesignPatternObjectPooling",
+      "dependencies": []
+    },
+    {
+      "id": "com.archnet.designpattern.singleton",
+      "name": "Singleton Pattern",
+      "category": "Design Pattern",
+      "version": "2.0.0",
+      "description": "A MonoBehaviour that exists once in the scene, reachable from anywhere with MyManager.Instance.",
+      "repo": "DesignPatternSingleton",
+      "dependencies": []
+    },
+    {
+      "id": "com.archnet.designpattern.singletonscriptableobject",
+      "name": "Singleton ScriptableObject Pattern",
+      "category": "Design Pattern",
+      "version": "2.0.0",
+      "description": "One shared ScriptableObject asset (settings, databases…) reachable from anywhere with MySettings.Instance, in builds too.",
+      "repo": "DesignPatternSingletonScriptableObject",
+      "dependencies": []
+    },
+    {
+      "id": "com.archnet.extension.canvas",
+      "name": "Canvas Extension",
+      "category": "Extension",
+      "version": "2.0.0",
+      "description": "Extension methods for Canvas and CanvasGroup: bring a canvas to the front, reset its sorting, show or hide a group, rebuild a layout.",
+      "repo": "CanvasExtension",
+      "dependencies": []
+    },
+    {
+      "id": "com.archnet.extension.color",
+      "name": "Color Extension",
+      "category": "Extension",
+      "version": "2.0.0",
+      "description": "Colors a UI element or a SpriteRenderer from a Color Library key, so the palette lives in one asset.",
+      "repo": "ColorExtension",
+      "dependencies": [
+        "com.archnet.library.color",
+        "com.archnet.library.core"
+      ]
+    },
+    {
+      "id": "com.archnet.extension.dictionary",
+      "name": "Dictionary Extension",
+      "category": "Extension",
+      "version": "2.0.0",
+      "description": "Extension methods for dictionaries: copy a dictionary without its empty values.",
+      "repo": "DictionaryExtension",
+      "dependencies": []
+    },
+    {
+      "id": "com.archnet.extension.dontdestroyonload",
+      "name": "Dont Destroy On Load Extension",
+      "category": "Extension",
+      "version": "2.0.0",
+      "description": "Add this component to keep its GameObject alive when a new scene loads (managers, music player…).",
+      "repo": "DontDestroyOnLoadExtension",
+      "dependencies": []
+    },
+    {
+      "id": "com.archnet.extension.dropzone",
+      "name": "Dropzone Extension",
+      "category": "Extension",
+      "version": "2.0.0",
+      "description": "Fills a container (layout group, list…) with copies of prefabs and removes them when the container is disabled.",
+      "repo": "DropzoneExtension",
+      "dependencies": []
+    },
+    {
+      "id": "com.archnet.extension.loadscene",
+      "name": "Load Scene Extension",
+      "category": "Extension",
+      "version": "2.0.0",
+      "description": "Loads a scene from the build list on start, after a delay, or when Load() is called (e.g. from a button).",
+      "repo": "LoadSceneExtension",
+      "dependencies": []
+    },
+    {
+      "id": "com.archnet.extension.renderer",
+      "name": "Renderer Extension",
+      "category": "Extension",
+      "version": "2.0.0",
+      "description": "Tells whether a screen point, or objects of the scene, are inside a UI rectangle, for every canvas mode.",
+      "repo": "RendererExtension",
+      "dependencies": []
+    },
+    {
+      "id": "com.archnet.extension.reversemask2d",
+      "name": "Reverse Mask 2D Extension",
+      "category": "Extension",
+      "version": "2.0.0",
+      "description": "Darkens the whole UI with an overlay except the elements you highlight, which are drawn above it (tutorials).",
+      "repo": "ReverseMask2DExtension",
+      "dependencies": [
+        "com.archnet.extension.canvas"
+      ]
+    },
+    {
+      "id": "com.archnet.extension.reversemask3d",
+      "name": "Reverse Mask 3D Extension",
+      "category": "Extension",
+      "version": "2.0.0",
+      "description": "Darkens the screen with an overlay that has holes over 3D objects; clicks inside a hole reach the object under it.",
+      "repo": "ReverseMask3DExtension",
+      "dependencies": [
+        "com.archnet.extension.canvas",
+        "com.archnet.extension.renderer"
+      ]
+    },
+    {
+      "id": "com.archnet.extension.rotation",
+      "name": "Rotation Extension",
+      "category": "Extension",
+      "version": "2.0.0",
+      "description": "Spins its GameObject around an axis at a set speed (loading icons, coins, fans…).",
+      "repo": "RotationExtension",
+      "dependencies": []
+    },
+    {
+      "id": "com.archnet.extension.scriptableobject",
+      "name": "ScriptableObject Extension",
+      "category": "Extension",
+      "version": "2.0.0",
+      "description": "Helpers for assets: get the file name of a ScriptableObject (or any asset), in the Editor and in builds.",
+      "repo": "ScriptableObjectExtension",
+      "dependencies": []
+    },
+    {
+      "id": "com.archnet.extension.scrollrect",
+      "name": "ScrollRect Extension",
+      "category": "Extension",
+      "version": "2.0.0",
+      "description": "Extension methods for scroll views: jump to an edge, lock scrolling, tell a horizontal drag from a vertical one.",
+      "repo": "ScrollRectExtension",
+      "dependencies": []
+    },
+    {
+      "id": "com.archnet.extension.sprite",
+      "name": "Sprite Extension",
+      "category": "Extension",
+      "version": "2.0.0",
+      "description": "Shows a sprite from an Image Library key on a UI Image or a SpriteRenderer, so icons are picked by name.",
+      "repo": "SpriteExtension",
+      "dependencies": [
+        "com.archnet.library.image",
+        "com.archnet.library.core"
+      ]
+    },
+    {
+      "id": "com.archnet.library.audio",
+      "name": "Audio Library",
+      "category": "Library",
+      "version": "2.0.0",
+      "description": "Audio clips stored by enum or int key, so code plays sounds by name and a clip can be replaced in one place.",
+      "repo": "AudioLibrary",
+      "dependencies": [
+        "com.archnet.library.core"
+      ]
+    },
+    {
+      "id": "com.archnet.library.color",
+      "name": "Color Library",
+      "category": "Library",
+      "version": "2.0.0",
+      "description": "Your game's palette in one asset: colors stored by enum or int key, so changing a color updates every place that uses it.",
+      "repo": "ColorLibrary",
+      "dependencies": [
+        "com.archnet.library.core"
+      ]
+    },
+    {
+      "id": "com.archnet.library.image",
+      "name": "Image Library",
+      "category": "Library",
+      "version": "2.0.0",
+      "description": "Links each sprite of a Sprite Atlas to an enum value or an int, so code asks for Icon.Sword instead of a sprite name that can change.",
+      "repo": "ImageLibrary",
+      "dependencies": [
+        "com.archnet.library.core"
+      ]
+    },
+    {
+      "id": "com.archnet.library.core",
+      "name": "Library Core",
+      "category": "Library",
+      "version": "2.0.0",
+      "description": "Base of the ArchNet libraries: a ScriptableObject that stores values by int or enum key, with one shared inspector. Derive from KeyedLibrary<T> to make your own library.",
+      "repo": "LibraryCore",
+      "dependencies": []
+    },
+    {
+      "id": "com.archnet.library.material",
+      "name": "Material Library",
+      "category": "Library",
+      "version": "2.0.0",
+      "description": "Materials stored by enum or int key, so code swaps materials by name instead of holding references everywhere.",
+      "repo": "MaterialLibrary",
+      "dependencies": [
+        "com.archnet.library.core"
+      ]
+    },
+    {
+      "id": "com.archnet.library.prefab",
+      "name": "Prefab Library",
+      "category": "Library",
+      "version": "2.0.0",
+      "description": "Prefabs stored by enum or int key and spawned by key, so spawners and level data never hold prefab references directly.",
+      "repo": "PrefabLibrary",
+      "dependencies": [
+        "com.archnet.library.core"
+      ]
+    },
+    {
+      "id": "com.archnet.module.audio",
+      "name": "Audio Module",
+      "category": "Module",
+      "version": "2.0.0",
+      "description": "Audio settings for an options menu: volume and mute for music and game sounds, applied at once and saved.",
+      "repo": "ModuleAudio",
+      "dependencies": []
+    },
+    {
+      "id": "com.archnet.module.credit",
+      "name": "Credit Module",
+      "category": "Module",
+      "version": "2.0.0",
+      "description": "A scrolling end-credits screen with your logos and text, then the next scene loads (or sooner on a key press).",
+      "repo": "ModuleCredit",
+      "dependencies": []
+    },
+    {
+      "id": "com.archnet.module.localization",
+      "name": "Localization Module",
+      "category": "Module",
+      "version": "2.0.0",
+      "description": "Translates your texts from JSON files (Resources/Languages/<code>.json); labels and dropdowns update when the language changes.",
+      "repo": "ModuleLocalization",
+      "dependencies": []
+    },
+    {
+      "id": "com.archnet.module.runtime",
+      "name": "Runtime Module",
+      "category": "Module",
+      "version": "2.0.0",
+      "description": "A debug panel for builds: press F1 to show live data (FPS, audio, graphics, screen, platform, version…).",
+      "repo": "ModuleRuntime",
+      "dependencies": []
+    },
+    {
+      "id": "com.archnet.module.shadow",
+      "name": "Shadow Module",
+      "category": "Module",
+      "version": "2.0.0",
+      "description": "Shadow settings for an options menu (type and resolution), applied at once and saved.",
+      "repo": "ModuleShadow",
+      "dependencies": [
+        "com.archnet.module.localization"
+      ]
+    },
+    {
+      "id": "com.archnet.module.video",
+      "name": "Video Module",
+      "category": "Module",
+      "version": "2.0.0",
+      "description": "Video settings for an options menu: resolution, window mode, quality level and anti-aliasing, applied at once and saved.",
+      "repo": "ModuleVideo",
+      "dependencies": []
+    },
+    {
+      "id": "com.archnet.service.console",
+      "name": "Console Service",
+      "category": "Service",
+      "version": "2.0.0",
+      "description": "A second console for your own messages, sorted by priority and shown in its own window, each with its call stack.",
+      "repo": "ServiceConsole",
+      "dependencies": []
+    }
+  ]
+}
