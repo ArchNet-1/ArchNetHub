@@ -31,4 +31,4 @@ The list comes with the installer and is refreshed from `https://archnet-platefo
 
 ## License
 
-See [LICENSE.md](LICENSE.md).
+MIT, see [LICENSE.md](LICENSE.md).

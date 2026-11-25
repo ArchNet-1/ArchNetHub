@@ -4,6 +4,7 @@
   "displayName": "ArchNet - Package Installer",
   "description": "Browse every ArchNet package from one window (ArchNet > Package Installer) and install any of them, with the ArchNet packages it needs, in one click.",
   "unity": "6000.0",
+  "license": "MIT",
   "documentationUrl": "https://archnet-plateform.fr/#ArchNetInstaller",
   "changelogUrl": "https://github.com/ArchNet-1/ArchNetInstaller/blob/main/CHANGELOG.md",
   "licensesUrl": "https://github.com/ArchNet-1/ArchNetInstaller/blob/main/LICENSE.md",
