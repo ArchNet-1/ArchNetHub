@@ -269,7 +269,7 @@
       "id": "com.archnet.module.localization",
       "name": "Localization Module",
       "category": "Module",
-      "version": "2.1.0",
+      "version": "2.1.1",
       "description": "Your game in several languages: JSON files per language, labels that follow the language, a language dropdown, and a key editor with CSV import / export.",
       "repo": "ModuleLocalization",
       "dependencies": ["com.archnet.core"]

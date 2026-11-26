@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.0.1] - 2026-11-26
+
+### Fixed
+- A service whose files were all deleted by hand no longer shows as **Created**; **Add to game** creates it again.
+- **Add to game** right after installing a package no longer fails with *No recipe was found*: the Hub waits up to 30 s for the package's scripts to compile.
+
 ## [2.0.0] - 2026-11-25
 
 ### Renamed

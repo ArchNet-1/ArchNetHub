@@ -18,6 +18,8 @@ namespace ArchNet.Installer.Editor
         const string PendingKey = "ArchNet.Hub.Pending";
         const string CreateStage = "create";
         const string AfterCompileStage = "after";
+        const int RecipeWaitAttempts = 6;     // × RecipeWaitSeconds: 30 s for a fresh package to compile
+        const double RecipeWaitSeconds = 5;
 
         static List<ServiceRecipe> _recipes;
 
@@ -42,8 +44,8 @@ namespace ArchNet.Installer.Editor
 
         public static string FolderOf(ServiceRecipe recipe) => $"{RootFolder}/{recipe.FolderName}";
 
-        /// <summary>True when the service was created in this project (listed in services.json).</summary>
-        public static bool IsCreated(string id) => ServiceManifest.Load()?.Find(id) != null;
+        /// <summary>True when the service was created in this project and its files are still there.</summary>
+        public static bool IsCreated(string id) => ServiceManifest.Load()?.Has(id) == true;
 
         /// <summary>"true" / "false" for each id, ready for {{#if id}} blocks in templates.</summary>
         public static Dictionary<string, string> CreatedFlags(params string[] ids) =>
@@ -87,7 +89,7 @@ namespace ArchNet.Installer.Editor
 
             foreach (string required in recipe.RequiredServices)
             {
-                if (manifest.Find(required) != null) continue;
+                if (manifest.Has(required)) continue;
                 ServiceRecipe dependency = Find(required);
                 if (dependency == null)
                 {
@@ -176,7 +178,10 @@ namespace ArchNet.Installer.Editor
                 string step = pending[0];
                 if (WaitsForReload(step)) return; // resumed by the static constructor after the reload
                 SessionState.SetString(PendingKey, string.Join(";", pending.Skip(1)));
-                try { Resume(step); }
+                try
+                {
+                    if (!Resume(step)) return; // put back to wait for its package: resumed later
+                }
                 catch (Exception exception)
                 {
                     ArchNetLog.Error($"Could not resume \"{step}\": {exception.Message}", "The full error is in the Unity console; click the service again.");
@@ -206,7 +211,8 @@ namespace ArchNet.Installer.Editor
             ResumePending();
         }
 
-        static void Resume(string step)
+        // Returns false when the step went back in the queue to wait for its package's scripts.
+        static bool Resume(string step)
         {
             string[] parts = step.Split('|');
             string stage = parts[0];
@@ -214,9 +220,17 @@ namespace ArchNet.Installer.Editor
             ServiceRecipe recipe = Find(id);
             if (recipe == null)
             {
+                int attempt = stage == CreateStage && parts.Length > 2 && int.TryParse(parts[2], out int done) ? done : 0;
+                if (stage == CreateStage && attempt < RecipeWaitAttempts)
+                {
+                    // A package just installed may still be importing or compiling its recipe.
+                    Push(CreateStage, $"{id}|{attempt + 1}");
+                    ResumeIn(RecipeWaitSeconds);
+                    return false;
+                }
                 ArchNetLog.Error($"No recipe \"{id}\" was found after installing its packages.",
                     "Check the Packages tab: an install may have failed, or this package version has no recipe yet.");
-                return;
+                return true;
             }
 
             if (stage == AfterCompileStage)
@@ -225,6 +239,20 @@ namespace ArchNet.Installer.Editor
                 if (manifest != null) Finish(recipe, manifest, ContextFor(recipe, manifest));
             }
             else Run(recipe);
+            return true;
+        }
+
+        // A domain reload drops this timer, and the reload resumes the queue anyway.
+        static void ResumeIn(double seconds)
+        {
+            double at = EditorApplication.timeSinceStartup + seconds;
+            void Tick()
+            {
+                if (EditorApplication.timeSinceStartup < at) return;
+                EditorApplication.update -= Tick;
+                ResumePending();
+            }
+            EditorApplication.update += Tick;
         }
     }
 }

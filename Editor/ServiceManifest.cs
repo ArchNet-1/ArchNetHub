@@ -33,6 +33,9 @@ namespace ArchNet.Installer.Editor
 
         public GeneratedFile Find(string path) => files.FirstOrDefault(f => f.path == path);
 
+        /// <summary>False once every file written for the service was deleted by hand.</summary>
+        public bool IsPresent() => files.Count == 0 || files.Any(f => File.Exists(f.path));
+
         public void Remember(string path, string hash)
         {
             GeneratedFile file = Find(path);
@@ -85,6 +88,9 @@ namespace ArchNet.Installer.Editor
         }
 
         public ServiceRecord Find(string id) => services.FirstOrDefault(s => s.id == id);
+
+        /// <summary>True when the service was created and its files are still in the project.</summary>
+        public bool Has(string id) => Find(id)?.IsPresent() == true;
 
         public ServiceRecord GetOrAdd(string id)
         {

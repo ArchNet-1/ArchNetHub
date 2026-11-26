@@ -1,6 +1,6 @@
 {
   "name": "com.archnet.hub",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "displayName": "ArchNet - Hub",
   "description": "One window (ArchNet > Hub) to add complete services to your game in one click (scripts, UI, data and a tool to edit them), install any ArchNet package with what it needs, browse your content libraries and read a journal of every action and error.",
   "unity": "6000.0",

@@ -322,7 +322,7 @@ namespace ArchNet.Installer.Editor
         VisualElement ServiceCard(ServiceEntry entry, ServiceRecipe recipe, ServiceManifest manifest)
         {
             string[] missing = MissingFor(entry);
-            bool created = manifest?.Find(entry.id) != null;
+            bool created = manifest?.Has(entry.id) == true;
 
             var card = Card();
             var top = Row();

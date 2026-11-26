@@ -159,6 +159,60 @@ namespace ArchNet.Installer.Editor.Tests
             Assert.IsTrue(ServiceManifest.IsValidNamespace(manifest.rootNamespace));
             Assert.IsNull(manifest.Find("credits"));
         }
+
+        [Test]
+        public void AServiceWhoseFilesWereAllDeletedIsNoLongerCreated()
+        {
+            string folder = Path.Combine(Path.GetTempPath(), "ArchNetHubTests", Guid.NewGuid().ToString("N"));
+            Directory.CreateDirectory(folder);
+            string kept = Path.Combine(folder, "GameSave.cs");
+            File.WriteAllText(kept, "");
+            var manifest = new ServiceManifest();
+            manifest.GetOrAdd("credits").Remember(Path.Combine(folder, "GameCredits.cs"), "deleted by hand");
+            manifest.GetOrAdd("save").Remember(kept, "still there");
+            manifest.GetOrAdd("responsive"); // writes no file of its own
+
+            try
+            {
+                Assert.IsFalse(manifest.Has("credits"));
+                Assert.IsTrue(manifest.Has("save"));
+                Assert.IsTrue(manifest.Has("responsive"));
+                Assert.IsFalse(manifest.Has("api"));
+            }
+            finally { Directory.Delete(folder, true); }
+        }
+    }
+
+    public class RecipeRunnerTests
+    {
+        string _logFile;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _logFile = ArchNetLog.FilePath;
+            ArchNetLog.FilePath = Path.Combine(Path.GetTempPath(), "ArchNetHubTests", Guid.NewGuid().ToString("N"), "hub.log");
+            ArchNetLog.KeepEntries = false;
+            RecipeRunner.CancelPending();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            RecipeRunner.CancelPending();
+            ArchNetLog.FilePath = _logFile;
+            ArchNetLog.KeepEntries = true;
+        }
+
+        [Test]
+        public void WaitsForARecipeWhosePackageIsStillCompiling()
+        {
+            RecipeRunner.RunAfterInstall("not-compiled-yet");
+
+            RecipeRunner.ResumePending();
+
+            Assert.IsTrue(RecipeRunner.HasPending, "the service must wait for its package's scripts, not fail at once");
+        }
     }
 
     public class PackageCatalogTests
