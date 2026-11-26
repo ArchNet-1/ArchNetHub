@@ -1,6 +1,15 @@
 {
   "packages": [
     {
+      "id": "com.archnet.core",
+      "name": "Core",
+      "category": "Core",
+      "version": "2.1.0",
+      "description": "The base every ArchNet service plugs into: bootstrap, Services.Get<T>(), event bus, safe JSON files and UI panels.",
+      "repo": "ArchNetCore",
+      "dependencies": []
+    },
+    {
       "id": "com.archnet.designpattern.facade",
       "name": "Facade Pattern",
       "category": "Design Pattern",
@@ -49,8 +58,8 @@
       "id": "com.archnet.extension.canvas",
       "name": "Canvas Extension",
       "category": "Extension",
-      "version": "2.0.0",
-      "description": "Extension methods for Canvas and CanvasGroup: bring a canvas to the front, reset its sorting, show or hide a group, rebuild a layout.",
+      "version": "2.1.0",
+      "description": "Responsive UI for phones, tablets and computers (Safe Area, Responsive Canvas, Responsive Switch), plus extension methods for Canvas and CanvasGroup.",
       "repo": "CanvasExtension",
       "dependencies": []
     },
@@ -94,13 +103,13 @@
       "dependencies": []
     },
     {
-      "id": "com.archnet.extension.loadscene",
+      "id": "com.archnet.module.scenes",
       "name": "Load Scene Extension",
       "category": "Extension",
-      "version": "2.0.0",
-      "description": "Loads a scene from the build list on start, after a delay, or when Load() is called (e.g. from a button).",
-      "repo": "LoadSceneExtension",
-      "dependencies": []
+      "version": "2.1.0",
+      "description": "Scenes of your game: a loading screen with progress and tips, a ready main menu and a gameplay scene with a pause menu. The ModuleScenes component is still there.",
+      "repo": "ModuleScenes",
+      "dependencies": ["com.archnet.core"]
     },
     {
       "id": "com.archnet.extension.renderer",
@@ -242,27 +251,28 @@
       "name": "Audio Module",
       "category": "Module",
       "version": "2.0.0",
-      "description": "Audio settings for an options menu: volume and mute for music and game sounds, applied at once and saved.",
+      "description": "Deprecated: use the Settings Module, which has volumes per channel. Audio settings for an options menu: volume and mute for music and game sounds.",
       "repo": "ModuleAudio",
+      "deprecated": true,
       "dependencies": []
     },
     {
       "id": "com.archnet.module.credit",
       "name": "Credit Module",
       "category": "Module",
-      "version": "2.0.0",
-      "description": "A scrolling end-credits screen with your logos and text, then the next scene loads (or sooner on a key press).",
+      "version": "2.1.0",
+      "description": "A scrolling credits screen built from a list of names you edit in a window, opened from anywhere with Services.Get<GameCredits>().Play().",
       "repo": "ModuleCredit",
-      "dependencies": []
+      "dependencies": ["com.archnet.core"]
     },
     {
       "id": "com.archnet.module.localization",
       "name": "Localization Module",
       "category": "Module",
-      "version": "2.0.0",
-      "description": "Translates your texts from JSON files (Resources/Languages/<code>.json); labels and dropdowns update when the language changes.",
+      "version": "2.1.0",
+      "description": "Your game in several languages: JSON files per language, labels that follow the language, a language dropdown, and a key editor with CSV import / export.",
       "repo": "ModuleLocalization",
-      "dependencies": []
+      "dependencies": ["com.archnet.core"]
     },
     {
       "id": "com.archnet.module.runtime",
@@ -278,8 +288,9 @@
       "name": "Shadow Module",
       "category": "Module",
       "version": "2.0.0",
-      "description": "Shadow settings for an options menu (type and resolution), applied at once and saved.",
+      "description": "Deprecated: it changes the QualitySettings shadows, which URP ignores; use the Settings Module. Shadow settings for an options menu (type and resolution).",
       "repo": "ModuleShadow",
+      "deprecated": true,
       "dependencies": [
         "com.archnet.module.localization"
       ]
@@ -289,8 +300,9 @@
       "name": "Video Module",
       "category": "Module",
       "version": "2.0.0",
-      "description": "Video settings for an options menu: resolution, window mode, quality level and anti-aliasing, applied at once and saved.",
+      "description": "Deprecated: use the Settings Module, which covers it. Video settings for an options menu: resolution, window mode, quality level and anti-aliasing.",
       "repo": "ModuleVideo",
+      "deprecated": true,
       "dependencies": []
     },
     {
@@ -301,6 +313,176 @@
       "description": "A second console for your own messages, sorted by priority and shown in its own window, each with its call stack.",
       "repo": "ServiceConsole",
       "dependencies": []
+    },
+    {
+      "id": "com.archnet.service.popup",
+      "name": "Popup Service",
+      "category": "Service",
+      "version": "2.0.0",
+      "description": "Alerts, yes / no questions and text prompts you await from code, one at a time.",
+      "repo": "ServicePopup",
+      "dependencies": ["com.archnet.core"]
+    },
+    {
+      "id": "com.archnet.module.localsave",
+      "name": "Local Save Module",
+      "category": "Module",
+      "version": "2.0.0",
+      "description": "Save slots for your game data as JSON files on the device, with autosave and upgrades of old saves.",
+      "repo": "ModuleLocalSave",
+      "dependencies": ["com.archnet.core"]
+    },
+    {
+      "id": "com.archnet.service.data",
+      "name": "Data Service",
+      "category": "Service",
+      "version": "2.0.0",
+      "description": "Your game data (items, enemies, levels…) as JSON tables, read with typed classes.",
+      "repo": "ServiceData",
+      "dependencies": ["com.archnet.core"]
+    },
+    {
+      "id": "com.archnet.module.settings",
+      "name": "Settings Module",
+      "category": "Module",
+      "version": "2.0.0",
+      "description": "A complete options menu (general, audio, video), applied at once and saved. Replaces the Audio, Video and Shadow modules.",
+      "repo": "ModuleSettings",
+      "dependencies": ["com.archnet.core"]
+    },
+    {
+      "id": "com.archnet.module.inputsystem",
+      "name": "Input Module",
+      "category": "Module",
+      "version": "2.0.0",
+      "description": "Keyboard, mouse and gamepad controls on the Input System, the Escape / Back key that closes menus and pauses, and a screen to change keys.",
+      "repo": "ModuleInputSystem",
+      "dependencies": ["com.archnet.core"]
+    },
+    {
+      "id": "com.archnet.service.notification",
+      "name": "Notification Service",
+      "category": "Service",
+      "version": "2.0.0",
+      "description": "In-game notifications (info, success, warning, error) in a corner of the screen, a few at a time.",
+      "repo": "ServiceNotification",
+      "dependencies": ["com.archnet.core"]
+    },
+    {
+      "id": "com.archnet.service.api",
+      "name": "API Service",
+      "category": "Service",
+      "version": "2.0.0",
+      "description": "Web API calls in one line (Get, Post, Put, Delete), JSON, environments, timeout, retries, clear errors.",
+      "repo": "ServiceApi",
+      "dependencies": ["com.archnet.core"]
+    }
+  ],
+  "services": [
+    {
+      "id": "bootstrap",
+      "name": "ArchNet Bootstrap",
+      "category": "Core",
+      "description": "Starts your game services once, before the first scene, and keeps them alive between scenes. Every other service plugs into it.",
+      "packages": ["com.archnet.core"]
+    },
+    {
+      "id": "credits",
+      "name": "Credits",
+      "category": "Game",
+      "description": "A scrolling credits screen built from your list of names, and a window to edit them. Open it from anywhere: Services.Get<GameCredits>().Play().",
+      "packages": ["com.archnet.module.credit"]
+    },
+    {
+      "id": "popups",
+      "name": "Popups",
+      "category": "UI",
+      "description": "Alerts, yes / no questions and text prompts you await from code, one at a time: await Services.Get<GamePopups>().Confirm(\"Quit\", \"Leave the game?\").",
+      "packages": ["com.archnet.service.popup"]
+    },
+    {
+      "id": "save",
+      "name": "Save",
+      "category": "Data",
+      "description": "Save slots for your game data on the device, with autosave and upgrades of old saves: Services.Get<GameSave>().Save().",
+      "packages": ["com.archnet.module.localsave"]
+    },
+    {
+      "id": "data",
+      "name": "Data",
+      "category": "Data",
+      "description": "Your game data (items, enemies, levels…) as JSON tables edited in a window, read with typed classes: Services.Get<GameData>().Items.",
+      "packages": ["com.archnet.service.data"]
+    },
+    {
+      "id": "settings",
+      "name": "Settings",
+      "category": "Game",
+      "description": "A complete options menu (general, audio, video) applied at once and saved: frame rate, V-Sync, volumes, display, resolution, quality.",
+      "packages": ["com.archnet.module.settings"]
+    },
+    {
+      "id": "loading",
+      "name": "Loading screen",
+      "category": "Scenes",
+      "description": "Loads scenes in the background behind a loading screen with a progress bar and tips: Services.Get<GameLoader>().LoadScene(\"Gameplay\").",
+      "packages": ["com.archnet.module.scenes"]
+    },
+    {
+      "id": "gameplay",
+      "name": "Gameplay",
+      "category": "Scenes",
+      "description": "The gameplay scene to build your game in: a HUD area and a pause menu (Resume, Settings, Main menu) that freezes the game.",
+      "packages": ["com.archnet.module.scenes"]
+    },
+    {
+      "id": "menu",
+      "name": "Main menu",
+      "category": "Scenes",
+      "description": "The first scene of the game: title and Play, Settings, Credits and Quit buttons wired to the services you added. Adds the Gameplay scene too.",
+      "packages": ["com.archnet.module.scenes"]
+    },
+    {
+      "id": "inputs",
+      "name": "Inputs",
+      "category": "Input",
+      "description": "Keyboard, mouse and gamepad controls (move, look, jump, interact, sprint) and the Escape / Back key that closes menus and pauses: Services.Get<GameInput>().Move.",
+      "packages": ["com.archnet.module.inputsystem"]
+    },
+    {
+      "id": "controls",
+      "name": "Controls",
+      "category": "Input",
+      "description": "A screen where players change their keyboard and gamepad keys, saved for the next launch: Services.Get<ControlsScreen>().Open().",
+      "packages": ["com.archnet.module.inputsystem"]
+    },
+    {
+      "id": "responsive",
+      "name": "Responsive UI",
+      "category": "UI",
+      "description": "Every ArchNet screen fits phones, tablets and computers, in portrait and landscape, away from notches. Click Update after adding screens.",
+      "packages": ["com.archnet.extension.canvas"]
+    },
+    {
+      "id": "localization",
+      "name": "Localization",
+      "category": "UI",
+      "description": "Your game in several languages: English and French files with the texts of the ArchNet screens, translated labels, a Language choice in Settings, a key editor with CSV import / export.",
+      "packages": ["com.archnet.module.localization"]
+    },
+    {
+      "id": "notifications",
+      "name": "Notifications",
+      "category": "UI",
+      "description": "In-game notifications (info, success, warning, error) in a corner of the screen, a few at a time: Services.Get<GameNotifications>().Success(\"Saved\").",
+      "packages": ["com.archnet.service.notification"]
+    },
+    {
+      "id": "api",
+      "name": "API",
+      "category": "Online",
+      "description": "Talk to your web API in one line: await Services.Get<GameApi>().Status(); one base URL per environment, timeout, retries, clear errors.",
+      "packages": ["com.archnet.service.api"]
     }
   ]
 }

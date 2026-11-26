@@ -1,0 +1,128 @@
+/* ArchNet · Hub — window style. Violet accent of archnet-plateform.fr, Unity colors for the rest
+   so the window follows the light and dark Editor themes. */
+
+.archnet-hub {
+    --archnet-accent: #8b5cf6;
+    --archnet-accent-dark: #6d28d9;
+    --archnet-card: rgba(127, 127, 127, 0.08);
+    --archnet-line: rgba(127, 127, 127, 0.25);
+    --archnet-ok: #22c55e;
+    --archnet-warning: #f59e0b;
+    --archnet-error: #ef4444;
+    flex-grow: 1;
+}
+
+.row { flex-direction: row; align-items: center; }
+.grow { flex-grow: 1; flex-shrink: 1; }
+
+/* Header */
+.header {
+    padding: 10px 12px 8px 12px;
+    border-bottom-width: 2px;
+    border-bottom-color: var(--archnet-accent);
+}
+.logo { font-size: 18px; -unity-font-style: bold; color: var(--archnet-accent); margin-right: 6px; }
+.title { font-size: 18px; -unity-font-style: bold; margin-right: 8px; }
+.link {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    color: var(--archnet-accent);
+}
+.link:hover { -unity-font-style: bold; }
+
+/* Tabs */
+.tab-bar {
+    padding: 0 8px;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--archnet-line);
+}
+.tab {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    border-bottom-width: 2px;
+    border-bottom-color: rgba(0, 0, 0, 0);
+    border-radius: 0;
+    margin: 0 2px;
+    padding: 7px 12px;
+    -unity-font-style: bold;
+    opacity: 0.65;
+}
+.tab:hover { opacity: 1; }
+.tab--selected { opacity: 1; border-bottom-color: var(--archnet-accent); color: var(--archnet-accent); }
+
+/* Pages */
+.pages { flex-grow: 1; }
+.page { flex-grow: 1; padding: 8px 10px 0 10px; }
+.toolbar { margin-bottom: 6px; }
+.toolbar > * { margin-right: 4px; }
+.category { min-width: 130px; }
+.list { flex-grow: 1; }
+.intro { white-space: normal; opacity: 0.8; margin: 2px 2px 8px 2px; flex-shrink: 1; }
+.developer { margin-bottom: 6px; }
+.invalid .unity-text-field__input { border-color: var(--archnet-error); }
+
+/* Cards */
+.card {
+    background-color: var(--archnet-card);
+    border-width: 1px;
+    border-color: var(--archnet-line);
+    border-radius: 6px;
+    padding: 8px 10px;
+    margin-bottom: 6px;
+}
+.card:hover { border-color: var(--archnet-accent); }
+.card-title { font-size: 13px; -unity-font-style: bold; margin-right: 6px; }
+.description { white-space: normal; margin: 4px 0; }
+.muted { opacity: 0.65; font-size: 11px; white-space: normal; }
+.actions { margin-top: 6px; }
+.actions Button { min-width: 80px; }
+.primary {
+    background-color: var(--archnet-accent);
+    border-color: var(--archnet-accent-dark);
+    color: #ffffff;
+    -unity-font-style: bold;
+}
+.primary:hover { background-color: var(--archnet-accent-dark); }
+.primary:disabled { opacity: 0.45; }
+
+.chip {
+    font-size: 10px;
+    padding: 1px 7px;
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: var(--archnet-line);
+    margin-right: 4px;
+    -unity-text-align: middle-center;
+}
+.chip--ok { border-color: var(--archnet-ok); color: var(--archnet-ok); }
+.chip--muted { opacity: 0.7; }
+.chip--warning { border-color: var(--archnet-warning); color: var(--archnet-warning); }
+
+.content-row .icon { width: 16px; height: 16px; margin-right: 6px; }
+
+/* Journal */
+.journal { flex-grow: 1; }
+.journal-row {
+    padding: 4px 4px;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--archnet-line);
+}
+#time { opacity: 0.6; min-width: 62px; }
+#level { min-width: 64px; -unity-font-style: bold; font-size: 10px; }
+#message { white-space: normal; }
+#hint { white-space: normal; opacity: 0.8; margin-left: 126px; font-size: 11px; }
+.level--warning { color: var(--archnet-warning); }
+.level--error { color: var(--archnet-error); }
+
+/* Status bar */
+.status-bar {
+    padding: 4px 10px;
+    border-top-width: 1px;
+    border-top-color: var(--archnet-line);
+    opacity: 0.85;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.status--warning { color: var(--archnet-warning); opacity: 1; }
+.status--error { color: var(--archnet-error); opacity: 1; }
